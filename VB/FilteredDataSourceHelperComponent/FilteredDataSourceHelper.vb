@@ -1,5 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Collections.Generic
 Imports DevExpress.XtraGrid.Views.Grid
 Imports System.Data
@@ -10,9 +9,8 @@ Imports System.Collections
 Namespace WindowsApplication1
 	Public Module FilteredDataSourceHelper
 
-
 		<System.Runtime.CompilerServices.Extension> _
-		Public  Function GetFilteredDataSource(ByVal view As ColumnView) As Object
+		Public Function GetFilteredDataSource(ByVal view As ColumnView) As Object
 			If view Is Nothing Then
 				Return Nothing
 			End If
@@ -25,29 +23,29 @@ Namespace WindowsApplication1
 		   Return Nothing
 		End Function
 
-		Public  Function GetFilteredDataView(ByVal view As ColumnView) As DataView
+		Public Function GetFilteredDataView(ByVal view As ColumnView) As DataView
 			If view Is Nothing Then
 				Return Nothing
 			End If
-			If view.ActiveFilter Is Nothing OrElse (Not view.ActiveFilterEnabled) OrElse view.ActiveFilter.Expression = "" Then
+			If view.ActiveFilter Is Nothing OrElse Not view.ActiveFilterEnabled OrElse view.ActiveFilter.Expression = "" Then
 				Return TryCast(view.DataSource, DataView)
 			End If
 
-			Dim table As DataTable = (CType(view.DataSource, DataView)).Table
+			Dim table As DataTable = CType(view.DataSource, DataView).Table
 			Dim filteredDataView As New DataView(table)
 			filteredDataView.RowFilter = DevExpress.Data.Filtering.CriteriaToWhereClauseHelper.GetDataSetWhere(view.ActiveFilterCriteria)
 			Return filteredDataView
 		End Function
-		Private  Function GetFilteredBindingList(ByVal view As ColumnView) As IList
+		Private Function GetFilteredBindingList(ByVal view As ColumnView) As IList
 			If view Is Nothing Then
 				Return Nothing
 			End If
 			Dim list As IList = TryCast(view.DataSource, IList)
-			If view.ActiveFilter Is Nothing OrElse (Not view.ActiveFilterEnabled) OrElse view.ActiveFilter.Expression = "" OrElse list.Count = 0 Then
+			If view.ActiveFilter Is Nothing OrElse Not view.ActiveFilterEnabled OrElse view.ActiveFilter.Expression = "" OrElse list.Count = 0 Then
 				Return list
 			End If
 			Dim result As New BindingList(Of Object)()
-			For i As Integer = 0 To view.RowCount - 1
+			For i As Integer = 0 To view.DataRowCount - 1
 				result.Add(view.GetRow(i))
 			Next i
 			Return result

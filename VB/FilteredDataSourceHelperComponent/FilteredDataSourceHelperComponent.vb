@@ -1,5 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports DevExpress.XtraGrid.Views.Grid
@@ -7,9 +6,10 @@ Imports System.Collections
 Imports System.Windows.Forms
 
 Namespace WindowsApplication1
-	<System.ComponentModel.DesignerCategory("")> _
+	<System.ComponentModel.DesignerCategory("")>
 	Public Class FilteredDataSourceHelperComponent
 		Inherits Component
+
 		' Fields...
 		Private _FilteredDataSource As BindingSource
 		Private _View As GridView

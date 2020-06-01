@@ -1,5 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Data
@@ -10,6 +9,7 @@ Imports System.Windows.Forms
 Namespace WindowsApplication1
 	Partial Public Class Form1
 		Inherits Form
+
 		Private Function CreateTable(ByVal RowCount As Integer) As DataTable
 			Dim tbl As New DataTable()
 			tbl.Columns.Add("Name", GetType(String))
@@ -26,7 +26,11 @@ Namespace WindowsApplication1
 			Dim bl As New BindingList(Of Customer)()
 
 			For i As Integer = 0 To rowCount - 1
-				bl.Add(New Customer With {.FirstName = String.Format("FirstName{0}", i Mod 30), .LastName = String.Format("FirstName{0}", i Mod 30), .ID=i})
+				bl.Add(New Customer With {
+					.FirstName = String.Format("FirstName{0}", i Mod 30),
+					.LastName = String.Format("FirstName{0}", i Mod 30),
+					.ID=i
+				})
 			Next i
 			Return bl
 		End Function
