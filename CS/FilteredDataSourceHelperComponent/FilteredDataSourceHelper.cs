@@ -42,7 +42,7 @@ namespace WindowsApplication1
                 || view.ActiveFilter.Expression == "" || list.Count == 0)
                 return list;
             BindingList<object> result = new BindingList<object>();
-            for (int i = 0; i < view.RowCount; i++)
+            for (int i = 0; i < view.DataRowCount; i++)
                 result.Add(view.GetRow(i));
             return result;
         }
